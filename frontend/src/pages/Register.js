@@ -12,7 +12,7 @@ export default function Register() {
     e.preventDefault(); // ✅ VERY IMPORTANT
 
     try {
-      const res = await axios.post("http://localhost:5000/api/register", {
+      const res = await axios.post("https://backend-drt7.onrender.com/api/login", {
         name,
         email,
         password

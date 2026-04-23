@@ -9,7 +9,7 @@ export default function Login() {
 
   const login = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/login", {
+      const res = await axios.post("https://backend-drt7.onrender.com/api/login", {
         email,
         password
       });

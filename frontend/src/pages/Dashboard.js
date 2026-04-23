@@ -6,16 +6,31 @@ export default function Dashboard() {
   const token = localStorage.getItem("token");
 
   const fetchItems = async () => {
-    const res = await axios.get("http://localhost:5000/api/items", {
+    try {
+      const res = await axios.get(
+        "https://backend-drt7.onrender.com/api/items",
+        {
+          headers: { Authorization: token }
+        }
+      );
+
+      setItems(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+ useEffect(() => {
+  const fetchItems = async () => {
+    const res = await axios.get("https://backend-drt7.onrender.com/api/items", {
       headers: { Authorization: token }
     });
 
     setItems(res.data);
   };
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
+  fetchItems();
+}, []);
 
   return (
     <div>
