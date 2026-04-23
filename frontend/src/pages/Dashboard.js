@@ -5,32 +5,24 @@ export default function Dashboard() {
   const [items, setItems] = useState([]);
   const token = localStorage.getItem("token");
 
-  const fetchItems = async () => {
-    try {
-      const res = await axios.get(
-        "https://backend-drt7.onrender.com/api/items",
-        {
-          headers: { Authorization: token }
-        }
-      );
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const res = await axios.get(
+          "https://backend-drt7.onrender.com/api/items",
+          {
+            headers: { Authorization: token }
+          }
+        );
 
-      setItems(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+        setItems(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
- useEffect(() => {
-  const fetchItems = async () => {
-    const res = await axios.get("https://backend-drt7.onrender.com/api/items", {
-      headers: { Authorization: token }
-    });
-
-    setItems(res.data);
-  };
-
-  fetchItems();
-}, []);
+    fetchItems();
+  }, [token]);
 
   return (
     <div>
